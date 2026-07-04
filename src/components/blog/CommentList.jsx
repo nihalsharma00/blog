@@ -18,6 +18,28 @@ function CommentItem({ comment, index, isSupabaseId }) {
   const date = isSupabaseId ? formatDate(new Date(comment.created_at)) : null;
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [localLikes, setLocalLikes] = useState(likes);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isReplying, setIsReplying] = useState(false);
+  const [replyText, setReplyText] = useState('');
+  const [localReplies, setLocalReplies] = useState([]);
+
+  const handleLike = () => {
+    if (hasLiked) {
+      setLocalLikes(l => l - 1);
+      setHasLiked(false);
+    } else {
+      setLocalLikes(l => l + 1);
+      setHasLiked(true);
+    }
+  };
+
+  const handleReplySubmit = () => {
+    if (!replyText.trim()) return;
+    setLocalReplies([...localReplies, { id: Date.now(), text: replyText, author: 'You (Guest)', date: 'Just now' }]);
+    setReplyText('');
+    setIsReplying(false);
+  };
   const isLong = body?.length > 150;
   const displayBody = isLong && !isExpanded ? body.slice(0, 150) + '...' : body;
 
@@ -61,15 +83,61 @@ function CommentItem({ comment, index, isSupabaseId }) {
         {/* Actions */}
         <div className="flex items-center gap-3 mt-2">
           {!isSupabaseId && (
-            <button className="flex items-center gap-1 text-xs font-semibold text-theme-muted hover:text-primary-600 transition-colors">
-              <ThumbsUp className="w-3.5 h-3.5" />
-              {likes}
+            <button 
+              onClick={handleLike}
+              className={`flex items-center gap-1 text-xs font-semibold transition-colors ${hasLiked ? 'text-primary-600' : 'text-theme-muted hover:text-primary-600'}`}
+            >
+              <ThumbsUp className={`w-3.5 h-3.5 ${hasLiked ? 'fill-current' : ''}`} />
+              {localLikes}
             </button>
           )}
-          <button className="text-xs font-semibold text-theme-muted hover:text-primary-600 transition-colors">
-            Reply
-          </button>
+          {!isSupabaseId && (
+            <button 
+              onClick={() => setIsReplying(!isReplying)}
+              className="text-xs font-semibold text-theme-muted hover:text-primary-600 transition-colors"
+            >
+              Reply
+            </button>
+          )}
         </div>
+
+        {/* Reply Input */}
+        {isReplying && (
+          <div className="mt-3 flex gap-2 items-center">
+            <input 
+              type="text" 
+              value={replyText}
+              onChange={(e) => setReplyText(e.target.value)}
+              placeholder="Write a reply..." 
+              className="flex-1 text-sm bg-theme-bg border border-theme-border rounded-lg px-3 py-1.5 focus:outline-none focus:border-primary-500 text-theme-text transition-colors"
+              onKeyDown={(e) => e.key === 'Enter' && handleReplySubmit()}
+              autoFocus
+            />
+            <button 
+              onClick={handleReplySubmit}
+              disabled={!replyText.trim()}
+              className="p-1.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 transition-colors shrink-0"
+              aria-label="Send reply"
+            >
+              <Send className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* Local Replies List */}
+        {localReplies.length > 0 && (
+          <div className="mt-3 pl-4 border-l-2 border-theme-border space-y-3">
+            {localReplies.map(reply => (
+              <div key={reply.id}>
+                <div className="flex items-baseline gap-2 mb-0.5">
+                  <span className="text-sm font-bold text-theme-text">{reply.author}</span>
+                  <span className="text-[10px] text-theme-muted font-medium">{reply.date}</span>
+                </div>
+                <p className="text-sm text-theme-muted">{reply.text}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   );
