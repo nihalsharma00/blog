@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Sun, Moon, Search, Menu, X, Rss, PenSquare, BookOpen, Tag, Home, Check, ChevronDown
+  Search, Menu, X, Rss, PenSquare, BookOpen, Home, Check, ChevronDown, Palette
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { SearchModal } from '../ui/SearchModal';
@@ -26,14 +26,24 @@ const CATEGORIES = [
   { id: 'news', label: 'News' },
 ];
 
+const THEMES = [
+  { id: 'clean-light', name: 'Clean Light', colors: ['#ffffff', '#f4f4f5', '#111827'] },
+  { id: 'cyber-neon', name: 'Cyber Neon', colors: ['#050511', '#06b6d4', '#e2e8f0'] },
+  { id: 'sunset-glass', name: 'Sunset Glass', colors: ['#fff5f3', '#f43f5e', '#4c0519'] },
+  { id: 'forest-calm', name: 'Forest Calm', colors: ['#f4f6f3', '#557d5d', '#2a3b2c'] },
+  { id: 'royal-midnight', name: 'Royal Midnight', colors: ['#0a0e17', '#c69b44', '#fcfcfc'] },
+];
+
 export function Header() {
-  const { isDark, toggle } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const { isSubscribed } = useSubscribe();
+  const themeDropdownRef = useRef(null);
 
   const { data: posts = [] } = useQuery({
     queryKey: ['posts'],
@@ -66,6 +76,28 @@ export function Header() {
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, []);
+
+  // Theme dropdown click outside and escape
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (themeDropdownRef.current && !themeDropdownRef.current.contains(e.target)) {
+        setThemeDropdownOpen(false);
+      }
+    };
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setThemeDropdownOpen(false);
+    };
+    
+    if (themeDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEsc);
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [themeDropdownOpen]);
 
   const handleSubscribe = () => navigate('/subscribe');
 
@@ -159,24 +191,48 @@ export function Header() {
                 </span>
               </button>
 
-              {/* Dark mode toggle */}
-              <button
-                onClick={toggle}
-                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-                className="p-2 rounded-lg text-theme-muted hover:text-theme-text hover:bg-theme-border transition-all duration-200"
-              >
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
-                    key={isDark ? 'dark' : 'light'}
-                    initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
-                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                    exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                  </motion.div>
+              {/* Theme selector */}
+              <div className="relative" ref={themeDropdownRef}>
+                <button
+                  onClick={() => setThemeDropdownOpen(p => !p)}
+                  aria-label="Select theme"
+                  aria-expanded={themeDropdownOpen}
+                  className="p-2 rounded-lg text-theme-muted hover:text-theme-text hover:bg-theme-border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                >
+                  <Palette className="w-4 h-4" />
+                </button>
+                <AnimatePresence>
+                  {themeDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 w-56 bg-theme-card border border-theme-border rounded-xl shadow-xl overflow-hidden z-50"
+                    >
+                      <div className="py-2 flex flex-col">
+                        {THEMES.map(t => (
+                          <button
+                            key={t.id}
+                            onClick={() => { setTheme(t.id); setThemeDropdownOpen(false); }}
+                            className={`flex items-center justify-between px-4 py-2.5 text-sm transition-colors ${theme === t.id ? 'bg-primary-50 dark:bg-primary-950 text-primary-600 dark:text-primary-400 font-medium' : 'text-theme-text hover:bg-theme-border'}`}
+                          >
+                            <span className="flex items-center gap-3">
+                              <span className="flex gap-0.5">
+                                {t.colors.map((c, i) => (
+                                  <span key={i} className="w-2.5 h-2.5 rounded-full border border-black/10 dark:border-white/10" style={{ backgroundColor: c }} />
+                                ))}
+                              </span>
+                              {t.name}
+                            </span>
+                            {theme === t.id && <Check className="w-4 h-4 text-primary-600 dark:text-primary-400" />}
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
                 </AnimatePresence>
-              </button>
+              </div>
 
               {/* Subscribe */}
               <div className="hidden sm:flex items-center ml-1 gap-2">

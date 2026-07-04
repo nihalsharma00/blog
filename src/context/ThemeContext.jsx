@@ -3,31 +3,30 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(() => {
+  const [theme, setThemeState] = useState(() => {
     try {
       const stored = localStorage.getItem('theme');
-      if (stored) return stored === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored && ['clean-light', 'cyber-neon', 'sunset-glass', 'forest-calm', 'royal-midnight'].includes(stored)) {
+        return stored;
+      }
+      return 'clean-light';
     } catch {
-      return false;
+      return 'clean-light';
     }
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
+    root.setAttribute('data-theme', theme);
+    // Remove the old 'dark' class if it was somehow present
+    root.classList.remove('dark');
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
-  const toggle = () => setIsDark(prev => !prev);
+  const setTheme = (newTheme) => setThemeState(newTheme);
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggle }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -28,6 +28,14 @@
     <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Prevent Theme Flicker -->
+    <script>
+      try {
+        const theme = localStorage.getItem('theme') || 'clean-light';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg">
