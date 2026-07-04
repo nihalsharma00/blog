@@ -124,7 +124,7 @@ export function PostCard({ post, user, album, commentsCount = 0, index = 0 }) {
         </Link>
         {isSupabase && (
           <div className="absolute top-3 right-3 z-10">
-            <BookmarkButton postId={post.id} className="bg-white/90 dark:bg-black/80 backdrop-blur-sm shadow-sm" />
+            <BookmarkButton postId={post.id} className="bg-theme-card/90 border border-theme-border backdrop-blur-sm shadow-sm text-theme-text hover:text-primary-500" />
           </div>
         )}
       </div>

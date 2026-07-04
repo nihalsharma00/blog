@@ -42,7 +42,7 @@ function PopularPostItem({ post, rank, commentsCount }) {
         {rank}
       </span>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 capitalize leading-snug">
+        <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 transition-colors line-clamp-2 capitalize leading-snug">
           {post.title}
         </p>
         <p className="text-xs text-theme-muted mt-1">{commentsCount} comments · {readingTime(post.body)}</p>
@@ -69,7 +69,7 @@ function RecentPostItem({ post, photo }) {
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 capitalize leading-snug">
+        <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 transition-colors line-clamp-2 capitalize leading-snug">
           {post.title}
         </p>
         <p className="text-xs text-theme-muted mt-1">{formatDate(mockDate(post.id))}</p>
@@ -97,7 +97,7 @@ function NewsletterWidget() {
         Get the best articles delivered straight to your inbox. No spam, ever.
       </p>
       {submitted ? (
-        <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
+        <div className="flex items-center gap-2 text-emerald-600 text-sm font-semibold">
           <CheckCircle2 className="w-4 h-4" />
           You&apos;re subscribed!
         </div>
@@ -242,7 +242,7 @@ export function Sidebar({ currentPostId }) {
                 to={`/category/${slugify(album.title)}`}
                 className="flex items-center justify-between py-2 px-2 -mx-2 rounded-lg hover:bg-[var(--sidebar-item-hover)] transition-colors group"
               >
-                <span className="text-sm text-theme-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors capitalize truncate">
+                <span className="text-sm text-theme-text group-hover:text-primary-600 transition-colors capitalize truncate">
                   {album.title}
                 </span>
                 <ChevronRight className="w-3.5 h-3.5 text-theme-muted group-hover:text-primary-400 flex-shrink-0 ml-2" />

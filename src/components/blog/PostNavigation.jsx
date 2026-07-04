@@ -16,10 +16,10 @@ export function PostNavigation({ prev, next }) {
           className="card p-5 flex items-center gap-4 group hover:-translate-y-0.5 transition-all duration-300"
           rel="prev"
         >
-          <ChevronLeft className="w-5 h-5 text-zinc-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 flex-shrink-0 transition-colors" />
+          <ChevronLeft className="w-5 h-5 text-theme-muted group-hover:text-primary-600 flex-shrink-0 transition-colors" />
           <div className="min-w-0 text-left">
-            <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400 mb-1">Previous</p>
-            <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors capitalize line-clamp-1">
+            <p className="text-xs font-semibold uppercase tracking-wide text-theme-muted mb-1">Previous</p>
+            <p className="text-sm font-bold text-theme-text group-hover:text-primary-600 transition-colors capitalize line-clamp-1">
               {truncate(prev.title, 60)}
             </p>
           </div>
@@ -35,12 +35,12 @@ export function PostNavigation({ prev, next }) {
           rel="next"
         >
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400 mb-1">Next</p>
-            <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors capitalize line-clamp-1">
+            <p className="text-xs font-semibold uppercase tracking-wide text-theme-muted mb-1">Next</p>
+            <p className="text-sm font-bold text-theme-text group-hover:text-primary-600 transition-colors capitalize line-clamp-1">
               {truncate(next.title, 60)}
             </p>
           </div>
-          <ChevronRight className="w-5 h-5 text-zinc-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 flex-shrink-0 transition-colors" />
+          <ChevronRight className="w-5 h-5 text-theme-muted group-hover:text-primary-600 flex-shrink-0 transition-colors" />
         </Link>
       ) : (
         <div />

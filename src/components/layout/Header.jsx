@@ -164,14 +164,14 @@ export function Header() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-1 w-48 bg-theme-card border border-theme-border rounded-xl shadow-xl overflow-hidden z-50"
+                      className="dropdown-menu top-full left-0 mt-1 w-48"
                     >
                       <div className="py-2 grid grid-cols-1">
                         {CATEGORIES.map(cat => (
                           <Link
                             key={cat.id}
                             to={`/category/${cat.id}`}
-                            className="px-4 py-2 text-sm text-theme-text hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors block"
+                            className="dropdown-item px-4 py-2 text-sm font-medium block"
                           >
                             {cat.label}
                           </Link>
@@ -217,14 +217,14 @@ export function Header() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full right-0 mt-2 w-56 bg-theme-card border border-theme-border rounded-xl shadow-xl overflow-hidden z-50"
+                      className="dropdown-menu top-full right-0 mt-2 w-56"
                     >
                       <div className="py-2 flex flex-col">
                         {THEMES.map(t => (
                           <button
                             key={t.id}
                             onClick={() => { setTheme(t.id); setThemeDropdownOpen(false); }}
-                            className={`flex items-center justify-between px-4 py-2.5 text-sm transition-colors ${theme === t.id ? 'bg-primary-50 dark:bg-primary-950 text-primary-600 dark:text-primary-400 font-medium' : 'text-theme-text hover:bg-theme-border'}`}
+                            className={`dropdown-item flex items-center justify-between px-4 py-2.5 text-sm ${theme === t.id ? 'font-bold text-primary-500' : ''}`}
                           >
                             <span className="flex items-center gap-3">
                               <span className="flex gap-0.5">

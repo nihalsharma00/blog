@@ -30,7 +30,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }) {
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
         aria-label="Previous page"
-        className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200"
+        className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium border border-theme-border text-theme-text disabled:opacity-40 disabled:cursor-not-allowed hover:bg-theme-border transition-all duration-200"
       >
         <ChevronLeft className="w-4 h-4" />
         Prev
@@ -40,7 +40,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }) {
         page === '…' ? (
           <span
             key={`ellipsis-${i}`}
-            className="px-3 py-2 text-zinc-400"
+            className="px-3 py-2 text-theme-muted"
           >
             …
           </span>
@@ -53,7 +53,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }) {
             className={`w-10 h-10 rounded-lg text-sm font-semibold transition-all duration-200 ${
               currentPage === page
                 ? 'bg-primary-600 text-white shadow-lg shadow-primary-500'
-                : 'border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800'
+                : 'border border-theme-border text-theme-text hover:bg-theme-border'
             }`}
           >
             {page}
@@ -65,7 +65,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }) {
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         aria-label="Next page"
-        className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200"
+        className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium border border-theme-border text-theme-text disabled:opacity-40 disabled:cursor-not-allowed hover:bg-theme-border transition-all duration-200"
       >
         Next
         <ChevronRight className="w-4 h-4" />

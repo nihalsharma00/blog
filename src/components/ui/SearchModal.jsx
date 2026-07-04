@@ -63,7 +63,7 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
             <div className="bg-theme-card rounded-2xl shadow-2xl border border-theme-border overflow-hidden w-full max-w-2xl pointer-events-auto flex flex-col max-h-[80vh]">
               {/* Search Input */}
               <div className="flex items-center gap-3 px-5 py-4 border-b border-theme-border">
-                <Search className="w-5 h-5 text-zinc-400 flex-shrink-0" />
+                <Search className="w-5 h-5 text-theme-muted flex-shrink-0" />
                 <input
                   ref={inputRef}
                   type="text"
@@ -104,7 +104,7 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
                         <Link
                           to={`/post/${post.id}`}
                           onClick={onClose}
-                          className="flex items-start gap-4 px-5 py-3.5 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-colors group"
+                          className="flex items-start gap-4 px-5 py-3.5 hover:bg-theme-border transition-colors group"
                         >
                           <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-theme-bg">
                             <img
@@ -115,7 +115,7 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-1 capitalize">
+                            <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 transition-colors line-clamp-1 capitalize">
                               {post.title}
                             </p>
                             <p className="text-xs text-theme-muted mt-0.5 line-clamp-1">

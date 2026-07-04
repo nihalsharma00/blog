@@ -54,6 +54,12 @@
     --sidebar-item-hover: #f3f4f6;
     --sidebar-rank: #e5e7eb;
 
+    --color-dropdown-bg: rgba(255, 255, 255, 0.92);
+    --color-dropdown-border: rgba(0, 0, 0, 0.08);
+    --color-dropdown-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    --color-dropdown-text: var(--color-text-base);
+    --color-dropdown-hover: rgba(0, 0, 0, 0.04);
+
     --color-primary-50: #fafafa;
     --color-primary-100: #f4f4f5;
     --color-primary-200: #e4e4e7;
@@ -100,6 +106,12 @@
     --sidebar-icon: #d946ef;
     --sidebar-item-hover: rgba(217, 70, 239, 0.15);
     --sidebar-rank: rgba(217, 70, 239, 0.3);
+
+    --color-dropdown-bg: rgba(20, 13, 43, 0.92);
+    --color-dropdown-border: rgba(217, 70, 239, 0.3);
+    --color-dropdown-shadow: 0 10px 30px rgba(217, 70, 239, 0.2);
+    --color-dropdown-text: #f1f5f9;
+    --color-dropdown-hover: rgba(217, 70, 239, 0.15);
   }
 
   /* 3. Sunset Glass (Light/Warm) */
@@ -135,6 +147,12 @@
     --sidebar-icon: #f43f5e;
     --sidebar-item-hover: rgba(244, 63, 94, 0.1);
     --sidebar-rank: rgba(244, 63, 94, 0.3);
+
+    --color-dropdown-bg: rgba(255, 245, 243, 0.85);
+    --color-dropdown-border: rgba(244, 63, 94, 0.3);
+    --color-dropdown-shadow: 0 8px 32px rgba(244, 63, 94, 0.2);
+    --color-dropdown-text: #4c0519;
+    --color-dropdown-hover: rgba(244, 63, 94, 0.1);
   }
 
   /* 4. Forest Calm (Light/Earth) */
@@ -170,6 +188,12 @@
     --sidebar-icon: #579369;
     --sidebar-item-hover: #e6eee7;
     --sidebar-rank: #cdd9d0;
+
+    --color-dropdown-bg: rgba(255, 255, 255, 0.92);
+    --color-dropdown-border: #cdd9d0;
+    --color-dropdown-shadow: 0 8px 30px rgba(27, 48, 32, 0.08);
+    --color-dropdown-text: #1b3020;
+    --color-dropdown-hover: rgba(87, 147, 105, 0.1);
   }
 
   /* 5. Royal Midnight (Dark/Luxury) */
@@ -205,6 +229,12 @@
     --sidebar-icon: #c69b44;
     --sidebar-item-hover: rgba(198, 155, 68, 0.15);
     --sidebar-rank: rgba(198, 155, 68, 0.3);
+
+    --color-dropdown-bg: rgba(15, 30, 66, 0.92);
+    --color-dropdown-border: rgba(198, 155, 68, 0.3);
+    --color-dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --color-dropdown-text: #f8fafc;
+    --color-dropdown-hover: rgba(198, 155, 68, 0.15);
   }
 
   body {
@@ -441,6 +471,15 @@
 
   .input {
     @apply w-full px-4 py-3 rounded-xl bg-theme-bg border border-theme-border text-theme-text placeholder:text-theme-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .dropdown-menu {
+    @apply absolute bg-[var(--color-dropdown-bg)] border border-[var(--color-dropdown-border)] shadow-[var(--color-dropdown-shadow)] text-[var(--color-dropdown-text)] rounded-xl overflow-hidden z-50;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .dropdown-item {
+    @apply hover:bg-[var(--color-dropdown-hover)] transition-colors;
   }
 
   .section-title {

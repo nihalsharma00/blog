@@ -54,7 +54,7 @@ export function ShareBar({ url, title }) {
 
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      <span className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mr-1">Share:</span>
+      <span className="text-sm font-semibold text-theme-muted mr-1">Share:</span>
       {platforms.map(({ name, icon: Icon, href, color }) => (
         <a
           key={name}
@@ -62,7 +62,7 @@ export function ShareBar({ url, title }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Share on ${name}`}
-          className={`p-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 transition-all duration-200 ${color}`}
+          className={`p-2 rounded-lg border border-theme-border text-theme-muted transition-all duration-200 ${color}`}
         >
           <Icon className="w-4 h-4" />
         </a>
@@ -70,10 +70,10 @@ export function ShareBar({ url, title }) {
       <button
         onClick={handleCopy}
         aria-label="Copy link"
-        className={`p-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 transition-all duration-200 ${
+        className={`p-2 rounded-lg border border-theme-border text-theme-muted transition-all duration-200 ${
           copied
             ? 'bg-emerald-500 text-white border-emerald-500'
-            : 'hover:bg-zinc-100 dark:hover:bg-zinc-800'
+            : 'hover:bg-theme-border hover:text-theme-text'
         }`}
       >
         {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}

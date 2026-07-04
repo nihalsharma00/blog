@@ -149,7 +149,7 @@ export default function ArticlePage() {
         <div className="flex items-center justify-between mb-6">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm text-theme-muted hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
+            className="inline-flex items-center gap-2 text-sm text-theme-muted hover:text-primary-600 transition-colors group"
             aria-label="Back to home"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
@@ -260,12 +260,12 @@ export default function ArticlePage() {
                   <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 ) : (
                   <>
-                    <p className="text-xl font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed capitalize">
+                    <p className="text-xl font-medium text-theme-muted leading-relaxed capitalize">
                       {post.body}
                     </p>
                     {paragraphs.map((p, i) => (
                       <div key={i}>
-                        <p className={i === 2 ? "border-l-4 border-primary-500 pl-5 py-2 my-8 italic text-zinc-600 dark:text-zinc-400 bg-primary-50 dark:bg-primary-950 rounded-r-xl" : "mb-6"}>
+                        <p className={i === 2 ? "border-l-4 border-primary-500 pl-5 py-2 my-8 italic text-theme-muted bg-primary-50 dark:bg-primary-950 rounded-r-xl" : "mb-6"}>
                           {p}
                         </p>
                         {/* Inject an image after every 3rd paragraph (but not the last one) */}
@@ -286,9 +286,9 @@ export default function ArticlePage() {
                 
                 {/* Tags (Supabase) */}
                 {isSupabaseId && post.tags?.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-theme-border">
                     {post.tags.map(tag => (
-                      <span key={tag} className="badge bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-sm py-1.5 px-3">
+                      <span key={tag} className="badge bg-theme-border/50 text-theme-muted text-sm py-1.5 px-3">
                         #{tag}
                       </span>
                     ))}
@@ -297,7 +297,7 @@ export default function ArticlePage() {
               </motion.div>
 
               {/* Mobile Share */}
-              <div className="xl:hidden mt-10 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex justify-center">
+              <div className="xl:hidden mt-10 pt-6 border-t border-theme-border flex justify-center">
                 <ShareBar title={post.title} horizontal />
               </div>
 
@@ -319,7 +319,7 @@ export default function ArticlePage() {
 
               {/* Comments */}
               <div className="mt-16" id="comments">
-                <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">
+                <h3 className="text-2xl font-bold text-theme-text mb-8">
                   Comments ({comments.length})
                 </h3>
                 {isCommentsLoading ? (
