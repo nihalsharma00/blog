@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { BackToTop } from './components/blog/BackToTop';
+import { ScrollToTop } from './components/layout/ScrollToTop';
 
 // Code-split pages
 const HomePage      = lazy(() => import('./pages/HomePage'));
@@ -52,6 +53,7 @@ export default function App() {
         <AuthProvider>
           {/* Global back-to-top button */}
           <BackToTop />
+          <ScrollToTop />
 
           <Suspense fallback={<PageLoader />}>
             <Routes>
