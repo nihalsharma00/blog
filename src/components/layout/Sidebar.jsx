@@ -35,9 +35,10 @@ function PopularPostItem({ post, rank, commentsCount }) {
   return (
     <Link
       to={`/post/${post.id}`}
-      className="flex items-start gap-3 group hover:bg-theme-border/50 -mx-2 px-2 py-2 rounded-xl transition-colors"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className="flex items-start gap-3 group hover:bg-[var(--sidebar-item-hover)] -mx-2 px-2 py-2 rounded-xl transition-colors"
     >
-      <span className="text-2xl font-black text-theme-border w-7 text-center leading-none mt-0.5 flex-shrink-0">
+      <span className="text-2xl font-black text-[var(--sidebar-rank)] w-7 text-center leading-none mt-0.5 flex-shrink-0">
         {rank}
       </span>
       <div className="flex-1 min-w-0">
@@ -54,9 +55,10 @@ function RecentPostItem({ post, photo }) {
   return (
     <Link
       to={`/post/${post.id}`}
-      className="flex items-start gap-3 group hover:bg-theme-border/50 -mx-2 px-2 py-2 rounded-xl transition-colors"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className="flex items-start gap-3 group hover:bg-[var(--sidebar-item-hover)] -mx-2 px-2 py-2 rounded-xl transition-colors"
     >
-      <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-theme-border">
+      <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--sidebar-border)]">
         <img
           src={`https://picsum.photos/seed/post${post.id}/100/100`}
           alt=""
@@ -86,10 +88,10 @@ function NewsletterWidget() {
   };
 
   return (
-    <div className="card p-5 bg-gradient-to-br from-primary-50 to-violet-50 dark:from-primary-950 dark:to-violet-950/30 border-primary-100 dark:border-primary-900">
+    <div className="card p-5 bg-[var(--sidebar-bg)] border-[var(--sidebar-border)] shadow-[var(--sidebar-shadow)]">
       <div className="flex items-center gap-2 mb-3">
-        <Mail className="w-4 h-4 text-primary-600 dark:text-primary-400" />
-        <h3 className="text-sm font-bold text-theme-text">Newsletter</h3>
+        <Mail className="w-4 h-4 text-[var(--sidebar-icon)]" />
+        <h3 className="text-sm font-bold text-[var(--sidebar-heading)]">Newsletter</h3>
       </div>
       <p className="text-xs text-theme-muted mb-4 leading-relaxed">
         Get the best articles delivered straight to your inbox. No spam, ever.
@@ -177,11 +179,11 @@ export function Sidebar({ currentPostId }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="card p-5"
+        className="card p-5 bg-[var(--sidebar-bg)] border-[var(--sidebar-border)] shadow-[var(--sidebar-shadow)]"
       >
         <div className="flex items-center gap-2 mb-4">
-          <Flame className="w-4 h-4 text-rose-500" />
-          <h3 className="section-title mb-0">Popular Posts</h3>
+          <Flame className="w-4 h-4 text-[var(--sidebar-icon)]" />
+          <h3 className="section-title mb-0 text-[var(--sidebar-heading)]">Popular Posts</h3>
         </div>
         <div className="space-y-1">
           {popularPosts.map((post, i) => (
@@ -200,11 +202,11 @@ export function Sidebar({ currentPostId }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.08 }}
-        className="card p-5"
+        className="card p-5 bg-[var(--sidebar-bg)] border-[var(--sidebar-border)] shadow-[var(--sidebar-shadow)]"
       >
         <div className="flex items-center gap-2 mb-4">
-          <Clock className="w-4 h-4 text-primary-500" />
-          <h3 className="section-title mb-0">Recent Posts</h3>
+          <Clock className="w-4 h-4 text-[var(--sidebar-icon)]" />
+          <h3 className="section-title mb-0 text-[var(--sidebar-heading)]">Recent Posts</h3>
         </div>
         <div className="space-y-1">
           {recentPosts.map((post) => (
@@ -227,18 +229,18 @@ export function Sidebar({ currentPostId }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.16 }}
-        className="card p-5"
+        className="card p-5 bg-[var(--sidebar-bg)] border-[var(--sidebar-border)] shadow-[var(--sidebar-shadow)]"
       >
         <div className="flex items-center gap-2 mb-4">
-          <Tag className="w-4 h-4 text-primary-600" />
-          <h3 className="section-title mb-0">Categories</h3>
+          <Tag className="w-4 h-4 text-[var(--sidebar-icon)]" />
+          <h3 className="section-title mb-0 text-[var(--sidebar-heading)]">Categories</h3>
         </div>
         <ul className="space-y-1">
           {categories.map((album) => (
             <li key={album.id}>
               <Link
                 to={`/category/${slugify(album.title)}`}
-                className="flex items-center justify-between py-2 px-2 -mx-2 rounded-lg hover:bg-theme-border/50 transition-colors group"
+                className="flex items-center justify-between py-2 px-2 -mx-2 rounded-lg hover:bg-[var(--sidebar-item-hover)] transition-colors group"
               >
                 <span className="text-sm text-theme-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors capitalize truncate">
                   {album.title}
@@ -255,18 +257,18 @@ export function Sidebar({ currentPostId }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="card p-5"
+        className="card p-5 bg-[var(--sidebar-bg)] border-[var(--sidebar-border)] shadow-[var(--sidebar-shadow)]"
       >
         <div className="flex items-center gap-2 mb-4">
-          <Hash className="w-4 h-4 text-amber-500" />
-          <h3 className="section-title mb-0">Popular Tags</h3>
+          <Hash className="w-4 h-4 text-[var(--sidebar-icon)]" />
+          <h3 className="section-title mb-0 text-[var(--sidebar-heading)]">Popular Tags</h3>
         </div>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <Link
               key={tag}
               to={`/search?q=${encodeURIComponent(tag)}`}
-              className="px-3 py-1.5 text-xs font-medium rounded-lg bg-theme-border text-theme-text hover:bg-primary-100 dark:hover:bg-primary-900 hover:text-primary-700 dark:hover:text-primary-300 transition-all duration-200"
+              className="px-3 py-1.5 text-xs font-medium rounded-lg bg-[var(--sidebar-item-hover)] text-theme-text hover:bg-[var(--sidebar-icon)] hover:text-white transition-all duration-200"
             >
               #{tag}
             </Link>
@@ -279,9 +281,9 @@ export function Sidebar({ currentPostId }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.24 }}
-        className="card p-5"
+        className="card p-5 bg-[var(--sidebar-bg)] border-[var(--sidebar-border)] shadow-[var(--sidebar-shadow)]"
       >
-        <h3 className="section-title">Follow Us</h3>
+        <h3 className="section-title text-[var(--sidebar-heading)]">Follow Us</h3>
         <div className="space-y-3">
           {SOCIAL.map(({ label, icon: Icon, href, followers }) => (
             <a
@@ -289,11 +291,11 @@ export function Sidebar({ currentPostId }) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between hover:bg-theme-border/50 -mx-2 px-2 py-2 rounded-xl transition-colors group"
+              className="flex items-center justify-between hover:bg-[var(--sidebar-item-hover)] -mx-2 px-2 py-2 rounded-xl transition-colors group"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-theme-border flex items-center justify-center group-hover:bg-primary-100 dark:group-hover:bg-primary-900 transition-colors">
-                  <Icon className="w-4 h-4 text-theme-muted group-hover:text-primary-600 dark:group-hover:text-primary-400" />
+                <div className="w-8 h-8 rounded-lg bg-[var(--sidebar-border)] flex items-center justify-center group-hover:bg-[var(--sidebar-icon)] transition-colors">
+                  <Icon className="w-4 h-4 text-[var(--sidebar-heading)] group-hover:text-white" />
                 </div>
                 <span className="text-sm font-semibold text-theme-text">{label}</span>
               </div>

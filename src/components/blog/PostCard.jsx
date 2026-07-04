@@ -36,6 +36,7 @@ export function PostCard({ post, user, album, commentsCount = 0, index = 0 }) {
       <div className="card group flex flex-col h-full overflow-hidden hover:-translate-y-1 transition-all duration-300 relative">
         <Link
           to={`/post/${post.id}`}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex flex-col h-full overflow-hidden block"
           aria-label={`Read article: ${post.title}`}
         >

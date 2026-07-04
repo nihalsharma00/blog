@@ -22,6 +22,7 @@ export function RelatedPosts({ posts = [] }) {
             >
               <Link
                 to={`/post/${post.id}`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="card overflow-hidden group flex flex-col h-full hover:-translate-y-0.5 transition-all duration-300 block"
               >
                 <div className="aspect-[16/9] overflow-hidden bg-zinc-100 dark:bg-zinc-800">

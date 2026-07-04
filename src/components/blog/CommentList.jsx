@@ -17,6 +17,10 @@ function CommentItem({ comment, index, isSupabaseId }) {
   const body = isSupabaseId ? comment.content : comment.body;
   const date = isSupabaseId ? formatDate(new Date(comment.created_at)) : null;
 
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isLong = body?.length > 150;
+  const displayBody = isLong && !isExpanded ? body.slice(0, 150) + '...' : body;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -43,9 +47,17 @@ function CommentItem({ comment, index, isSupabaseId }) {
           {authorEmail && <span className="text-xs text-zinc-400">{authorEmail}</span>}
           {date && <span className="text-[10px] text-zinc-500 font-medium">{date}</span>}
         </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed whitespace-pre-wrap">
-          {body}
+        <p className="text-sm text-theme-muted leading-relaxed whitespace-pre-wrap">
+          {displayBody}
         </p>
+        {isLong && (
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)} 
+            className="text-xs font-semibold text-primary-600 dark:text-primary-400 hover:underline mt-1"
+          >
+            {isExpanded ? 'Show less comments' : 'Read More'}
+          </button>
+        )}
         {/* Actions */}
         <div className="flex items-center gap-3 mt-2">
           {!isSupabaseId && (

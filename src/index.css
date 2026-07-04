@@ -35,17 +35,25 @@
     --color-text: var(--color-text-base);
     --color-text-muted: var(--color-text-muted-base);
 
-    --color-bg-base: #ffffff;
+    --color-bg-base: #f9fafb; /* Off-white for better card contrast */
     --color-bg-dark: #18181b; 
-    --color-card-base: #ffffff;
+    --color-card-base: #ffffff; /* Stark white cards */
     --color-card-dark: #27272a;
-    --color-border-base: #f4f4f5;
+    --color-border-base: #e5e7eb;
     --color-border-dark: #3f3f46;
-    --color-text-base: #18181b;
+    --color-text-base: #111827;
     --color-text-dark: #fafafa;
-    --color-text-muted-base: #71717a;
+    --color-text-muted-base: #6b7280;
     --color-text-muted-dark: #a1a1aa;
     
+    --sidebar-bg: var(--color-card-base);
+    --sidebar-border: var(--color-border-base);
+    --sidebar-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    --sidebar-heading: var(--color-text-base);
+    --sidebar-icon: var(--color-primary-500);
+    --sidebar-item-hover: #f3f4f6;
+    --sidebar-rank: #e5e7eb;
+
     --color-primary-50: #fafafa;
     --color-primary-100: #f4f4f5;
     --color-primary-200: #e4e4e7;
@@ -60,7 +68,7 @@
   }
 
   /* 2. Cyber Neon (Dark Mode Base) */
-  [data-theme="cyber-neon"] {
+  html[data-theme="cyber-neon"] {
     --color-bg: var(--color-bg-dark);
     --color-card: var(--color-card-dark);
     --color-border: var(--color-border-dark);
@@ -84,10 +92,18 @@
     --color-primary-800: #86198f;
     --color-primary-900: #701a75;
     --color-primary-950: #4a044e;
+    
+    --sidebar-bg: #0d0920;
+    --sidebar-border: rgba(217, 70, 239, 0.25);
+    --sidebar-shadow: 0 0 20px rgba(217, 70, 239, 0.1);
+    --sidebar-heading: #f1f5f9;
+    --sidebar-icon: #d946ef;
+    --sidebar-item-hover: rgba(217, 70, 239, 0.15);
+    --sidebar-rank: rgba(217, 70, 239, 0.3);
   }
 
   /* 3. Sunset Glass (Light/Warm) */
-  [data-theme="sunset-glass"] {
+  html[data-theme="sunset-glass"] {
     --color-bg: var(--color-bg-base);
     --color-card: var(--color-card-base);
     --color-border: var(--color-border-base);
@@ -111,10 +127,18 @@
     --color-primary-800: #9f1239;
     --color-primary-900: #881337;
     --color-primary-950: #4c0519;
+    
+    --sidebar-bg: rgba(255, 255, 255, 0.7);
+    --sidebar-border: rgba(244, 63, 94, 0.2);
+    --sidebar-shadow: 0 8px 32px rgba(244, 63, 94, 0.1);
+    --sidebar-heading: #4c0519;
+    --sidebar-icon: #f43f5e;
+    --sidebar-item-hover: rgba(244, 63, 94, 0.1);
+    --sidebar-rank: rgba(244, 63, 94, 0.3);
   }
 
   /* 4. Forest Calm (Light/Earth) */
-  [data-theme="forest-calm"] {
+  html[data-theme="forest-calm"] {
     --color-bg: var(--color-bg-base);
     --color-card: var(--color-card-base);
     --color-border: var(--color-border-base);
@@ -122,7 +146,7 @@
     --color-text-muted: var(--color-text-muted-base);
 
     --color-bg-base: #e6eee7;
-    --color-card-base: #f5f9f6;
+    --color-card-base: #ffffff; /* White cards to contrast with green background */
     --color-border-base: #cdd9d0;
     --color-text-base: #1b3020;
     --color-text-muted-base: #4a6351;
@@ -135,13 +159,21 @@
     --color-primary-500: #3c774e;
     --color-primary-600: #2c5f3c;
     --color-primary-700: #244b30;
-    --color-primary-800: #1e3d28;
-    --color-primary-900: #193222;
-    --color-primary-950: #0e1d13;
+    --color-primary-800: #2a3b2c;
+    --color-primary-900: #1b3020;
+    --color-primary-950: #0f1c12;
+    
+    --sidebar-bg: #ffffff;
+    --sidebar-border: #cdd9d0;
+    --sidebar-shadow: 0 4px 15px rgba(27, 48, 32, 0.05);
+    --sidebar-heading: #1b3020;
+    --sidebar-icon: #579369;
+    --sidebar-item-hover: #e6eee7;
+    --sidebar-rank: #cdd9d0;
   }
 
   /* 5. Royal Midnight (Dark/Luxury) */
-  [data-theme="royal-midnight"] {
+  html[data-theme="royal-midnight"] {
     --color-bg: var(--color-bg-dark);
     --color-card: var(--color-card-dark);
     --color-border: var(--color-border-dark);
@@ -162,9 +194,17 @@
     --color-primary-500: #c69b44;
     --color-primary-600: #b48336;
     --color-primary-700: #97672d;
-    --color-primary-800: #7e552a;
-    --color-primary-900: #674624;
-    --color-primary-950: #3c2611;
+    --color-primary-800: #855e1c;
+    --color-primary-900: #744e13;
+    --color-primary-950: #452b07;
+
+    --sidebar-bg: #0b1530;
+    --sidebar-border: rgba(198, 155, 68, 0.25);
+    --sidebar-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    --sidebar-heading: #f8fafc;
+    --sidebar-icon: #c69b44;
+    --sidebar-item-hover: rgba(198, 155, 68, 0.15);
+    --sidebar-rank: rgba(198, 155, 68, 0.3);
   }
 
   body {
@@ -190,11 +230,11 @@
   }
 
   /* Cyber Neon Glow */
-  [data-theme="cyber-neon"] .card {
+  html[data-theme="cyber-neon"] .card {
     box-shadow: 0 0 16px rgba(217, 70, 239, 0.08);
     border-color: rgba(217, 70, 239, 0.2);
   }
-  [data-theme="cyber-neon"] .btn-primary {
+  html[data-theme="cyber-neon"] .btn-primary {
     box-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
   }
 

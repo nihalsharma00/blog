@@ -98,8 +98,21 @@ export default function HomePage() {
     }
   }, [filteredByCategory, sortBy, commentsByPost]);
 
-  // Pagination (exclude featured from grid)
-  const gridPosts = sorted.slice(1); // hero uses sorted[0]
+  // Default hero (always newest)
+  const defaultHero = useMemo(() => {
+    if (!allPosts.length) return null;
+    return [...allPosts].sort((a, b) => {
+      const tA = a.created_at ? new Date(a.created_at).getTime() : a.id;
+      const tB = b.created_at ? new Date(b.created_at).getTime() : b.id;
+      return tB - tA;
+    })[0];
+  }, [allPosts]);
+
+  // Pagination (exclude hero from grid)
+  const gridPosts = useMemo(() => {
+    return sorted.filter(p => p.id !== defaultHero?.id);
+  }, [sorted, defaultHero]);
+
   const totalPages = Math.ceil(gridPosts.length / POSTS_PER_PAGE);
   const paginated = gridPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
@@ -119,7 +132,7 @@ export default function HomePage() {
     setCurrentPage(1);
   };
 
-  const featuredPost = sorted[0];
+  const featuredPost = defaultHero;
   const featuredUser = featuredPost && !featuredPost.created_at ? userMap[featuredPost.userId] : null;
 
   return (
@@ -209,14 +222,12 @@ export default function HomePage() {
       </div>
 
       {/* Category Chips */}
-      {!query && (
-        <div className="mb-10">
-          <CategoryChips
-            selectedCategory={selectedCategory}
-            onSelect={handleCategorySelect}
-          />
-        </div>
-      )}
+      <div className="mb-10">
+        <CategoryChips
+          selectedCategory={selectedCategory}
+          onSelect={handleCategorySelect}
+        />
+      </div>
 
       {/* Grid */}
       {postsLoading ? (

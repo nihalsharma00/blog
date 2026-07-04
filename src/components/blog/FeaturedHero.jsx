@@ -95,6 +95,7 @@ export function FeaturedHero({ post, user, commentsCount = 0 }) {
             {/* CTA */}
             <Link
               to={`/post/${post.id}`}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-zinc-900 text-sm font-bold hover:bg-primary-50 transition-colors duration-200 group/btn self-start sm:self-auto flex-shrink-0"
             >
               Read Article

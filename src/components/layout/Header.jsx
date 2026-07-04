@@ -106,14 +106,23 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/90 dark:bg-[#0f0f13]/90 backdrop-blur-xl shadow-sm shadow-black/5'
+            ? 'bg-theme-bg/95 backdrop-blur-xl shadow-md border-b border-theme-border'
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group mr-4">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="flex items-center gap-2 group mr-4"
+            >
                 <div className="w-9 h-9 rounded-xl bg-theme-text flex items-center justify-center transition-transform group-hover:scale-105 group-active:scale-95">
                   <PenSquare className="w-4 h-4 text-theme-bg" />
                 </div>

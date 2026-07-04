@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
@@ -136,6 +137,9 @@ export default function ArticlePage() {
     ? jsonPosts.filter(p => p.category === post.category && p.id !== postId).slice(0, 3)
     : []; // could fetch related supabase posts later
 
+  const [showAllComments, setShowAllComments] = useState(false);
+  const displayedComments = showAllComments ? comments : comments.slice(0, 2);
+
   return (
     <CategoryTheme category={categoryTheme}>
       <Layout showSidebar currentPostId={postId}>
@@ -260,9 +264,22 @@ export default function ArticlePage() {
                       {post.body}
                     </p>
                     {paragraphs.map((p, i) => (
-                      <p key={i} className={i === 2 ? "border-l-4 border-primary-500 pl-5 py-2 my-8 italic text-zinc-600 dark:text-zinc-400 bg-primary-50 dark:bg-primary-950 rounded-r-xl" : ""}>
-                        {p}
-                      </p>
+                      <div key={i}>
+                        <p className={i === 2 ? "border-l-4 border-primary-500 pl-5 py-2 my-8 italic text-zinc-600 dark:text-zinc-400 bg-primary-50 dark:bg-primary-950 rounded-r-xl" : "mb-6"}>
+                          {p}
+                        </p>
+                        {/* Inject an image after every 3rd paragraph (but not the last one) */}
+                        {i > 0 && i % 3 === 0 && i < paragraphs.length - 1 && (
+                          <div className="my-8 rounded-xl overflow-hidden shadow-md border border-theme-border">
+                            <img
+                              src={`https://picsum.photos/seed/article${post.id}img${i}/800/400`}
+                              alt="Article illustration"
+                              className="w-full h-auto object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </>
                 )}
@@ -310,11 +327,23 @@ export default function ArticlePage() {
                     <div className="w-8 h-8 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin" />
                   </div>
                 ) : (
-                  <CommentList 
-                    comments={comments} 
-                    postId={postId} 
-                    isSupabaseId={isSupabaseId} 
-                  />
+                  <>
+                    <CommentList 
+                      comments={displayedComments} 
+                      postId={postId} 
+                      isSupabaseId={isSupabaseId} 
+                    />
+                    {comments.length > 2 && (
+                      <div className="mt-6 text-center">
+                        <button 
+                          onClick={() => setShowAllComments(!showAllComments)} 
+                          className="btn-outline px-6 py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all"
+                        >
+                          {showAllComments ? 'Show less comments' : `Read all ${comments.length} comments`}
+                        </button>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -323,8 +352,7 @@ export default function ArticlePage() {
 
         {/* Related Posts (JSON only for now) */}
         {!isSupabaseId && relatedPosts.length > 0 && (
-          <div className="mt-20 pt-10 border-t border-zinc-100 dark:border-zinc-800">
-            <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-8">Related Articles</h3>
+          <div className="mt-20 pt-10 border-t border-theme-border">
             <RelatedPosts posts={relatedPosts} />
           </div>
         )}
