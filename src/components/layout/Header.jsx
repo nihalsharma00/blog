@@ -28,10 +28,10 @@ const CATEGORIES = [
 
 const THEMES = [
   { id: 'clean-light', name: 'Clean Light', colors: ['#ffffff', '#f4f4f5', '#111827'] },
-  { id: 'cyber-neon', name: 'Cyber Neon', colors: ['#050511', '#06b6d4', '#e2e8f0'] },
+  { id: 'cyber-neon', name: 'Cyber Neon', colors: ['#0a061b', '#d946ef', '#f1f5f9'] },
   { id: 'sunset-glass', name: 'Sunset Glass', colors: ['#fff5f3', '#f43f5e', '#4c0519'] },
-  { id: 'forest-calm', name: 'Forest Calm', colors: ['#f4f6f3', '#557d5d', '#2a3b2c'] },
-  { id: 'royal-midnight', name: 'Royal Midnight', colors: ['#0a0e17', '#c69b44', '#fcfcfc'] },
+  { id: 'forest-calm', name: 'Forest Calm', colors: ['#e6eee7', '#579369', '#1b3020'] },
+  { id: 'royal-midnight', name: 'Royal Midnight', colors: ['#07122b', '#c69b44', '#f8fafc'] },
 ];
 
 export function Header() {

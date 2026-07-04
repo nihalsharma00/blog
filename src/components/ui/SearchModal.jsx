@@ -55,14 +55,14 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -20 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="fixed top-[10%] left-1/2 -translate-x-1/2 w-full max-w-2xl z-50 px-4"
+            className="fixed inset-0 z-50 flex justify-center items-start pt-[10vh] px-4 sm:px-6 pointer-events-none"
             role="dialog"
             aria-modal="true"
             aria-label="Search posts"
           >
-            <div className="bg-white dark:bg-[#1a1a24] rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+            <div className="bg-theme-card rounded-2xl shadow-2xl border border-theme-border overflow-hidden w-full max-w-2xl pointer-events-auto flex flex-col max-h-[80vh]">
               {/* Search Input */}
-              <div className="flex items-center gap-3 px-5 py-4 border-b border-zinc-100 dark:border-zinc-800">
+              <div className="flex items-center gap-3 px-5 py-4 border-b border-theme-border">
                 <Search className="w-5 h-5 text-zinc-400 flex-shrink-0" />
                 <input
                   ref={inputRef}
@@ -70,31 +70,31 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search articles, topics, authors…"
-                  className="flex-1 bg-transparent text-zinc-900 dark:text-zinc-100 text-base placeholder:text-zinc-400 focus:outline-none"
+                  className="flex-1 bg-transparent text-theme-text text-base placeholder:text-theme-muted focus:outline-none"
                   aria-label="Search"
                 />
                 {query && (
                   <button
                     onClick={() => setQuery('')}
-                    className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+                    className="text-theme-muted hover:text-theme-text transition-colors"
                     aria-label="Clear search"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 )}
-                <kbd className="hidden sm:flex items-center gap-0.5 px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-500 rounded border border-zinc-200 dark:border-zinc-700">
+                <kbd className="hidden sm:flex items-center gap-0.5 px-2 py-1 text-xs bg-theme-bg text-theme-muted rounded border border-theme-border">
                   Esc
                 </kbd>
               </div>
 
               {/* Results */}
-              <div className="max-h-[60vh] overflow-y-auto">
-                <div className="flex items-center gap-2 px-5 py-3 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+              <div className="overflow-y-auto min-h-[100px]">
+                <div className="flex items-center gap-2 px-5 py-3 text-xs font-semibold text-theme-muted uppercase tracking-wider">
                   {query.trim() ? <TrendingUp className="w-3.5 h-3.5" /> : <Clock className="w-3.5 h-3.5" />}
                   {label}
                 </div>
                 {displayResults.length === 0 ? (
-                  <div className="px-5 py-10 text-center text-zinc-400">
+                  <div className="px-5 py-10 text-center text-theme-muted">
                     No results for &ldquo;{query}&rdquo;
                   </div>
                 ) : (
@@ -106,7 +106,7 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
                           onClick={onClose}
                           className="flex items-start gap-4 px-5 py-3.5 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-colors group"
                         >
-                          <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-zinc-100 dark:bg-zinc-800">
+                          <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-theme-bg">
                             <img
                               src={`https://picsum.photos/seed/post${post.id}/100/100`}
                               alt=""
@@ -115,10 +115,10 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-1 capitalize">
+                            <p className="text-sm font-semibold text-theme-text group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-1 capitalize">
                               {post.title}
                             </p>
-                            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 line-clamp-1">
+                            <p className="text-xs text-theme-muted mt-0.5 line-clamp-1">
                               {truncate(post.body, 80)}
                             </p>
                           </div>
@@ -130,9 +130,9 @@ export function SearchModal({ isOpen, onClose, posts = [] }) {
               </div>
 
               {/* Footer hint */}
-              <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center gap-4 text-xs text-zinc-400">
-                <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">↑</kbd><kbd className="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">↓</kbd> navigate</span>
-                <span><kbd className="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">↵</kbd> open</span>
+              <div className="px-5 py-3 border-t border-theme-border flex items-center gap-4 text-xs text-theme-muted mt-auto">
+                <span className="flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-theme-bg rounded border border-theme-border">↑</kbd><kbd className="px-1.5 py-0.5 bg-theme-bg rounded border border-theme-border">↓</kbd> navigate</span>
+                <span><kbd className="px-1.5 py-0.5 bg-theme-bg rounded border border-theme-border">↵</kbd> open</span>
               </div>
             </div>
           </motion.div>

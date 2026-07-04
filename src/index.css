@@ -67,23 +67,23 @@
     --color-text: var(--color-text-dark);
     --color-text-muted: var(--color-text-muted-dark);
 
-    --color-bg-dark: #050511;
-    --color-card-dark: #0b0b1a;
-    --color-border-dark: #1e1e38;
-    --color-text-dark: #e2e8f0;
-    --color-text-muted-dark: #8b8bb3;
+    --color-bg-dark: #0a061b;
+    --color-card-dark: #140d2b;
+    --color-border-dark: #291854;
+    --color-text-dark: #f1f5f9;
+    --color-text-muted-dark: #a5a2cc;
 
-    --color-primary-50: #ecfeff;
-    --color-primary-100: #cffafe;
-    --color-primary-200: #a5f3fc;
-    --color-primary-300: #67e8f9;
-    --color-primary-400: #22d3ee;
-    --color-primary-500: #06b6d4;
-    --color-primary-600: #0891b2;
-    --color-primary-700: #0e7490;
-    --color-primary-800: #155e75;
-    --color-primary-900: #164e63;
-    --color-primary-950: #083344;
+    --color-primary-50: #fdf4ff;
+    --color-primary-100: #fae8ff;
+    --color-primary-200: #f5d0fe;
+    --color-primary-300: #f0abfc;
+    --color-primary-400: #e879f9;
+    --color-primary-500: #d946ef;
+    --color-primary-600: #c026d3;
+    --color-primary-700: #a21caf;
+    --color-primary-800: #86198f;
+    --color-primary-900: #701a75;
+    --color-primary-950: #4a044e;
   }
 
   /* 3. Sunset Glass (Light/Warm) */
@@ -121,23 +121,23 @@
     --color-text: var(--color-text-base);
     --color-text-muted: var(--color-text-muted-base);
 
-    --color-bg-base: #f4f6f3;
-    --color-card-base: #ffffff;
-    --color-border-base: #dce4da;
-    --color-text-base: #2a3b2c;
-    --color-text-muted-base: #5a705d;
+    --color-bg-base: #e6eee7;
+    --color-card-base: #f5f9f6;
+    --color-border-base: #cdd9d0;
+    --color-text-base: #1b3020;
+    --color-text-muted-base: #4a6351;
 
-    --color-primary-50: #f3f6f4;
-    --color-primary-100: #e2e9e3;
-    --color-primary-200: #c6d5c8;
-    --color-primary-300: #9db9a2;
-    --color-primary-400: #74997b;
-    --color-primary-500: #557d5d;
-    --color-primary-600: #426349;
-    --color-primary-700: #354f3b;
-    --color-primary-800: #2d4032;
-    --color-primary-900: #253429;
-    --color-primary-950: #131c16;
+    --color-primary-50: #e9f2eb;
+    --color-primary-100: #cfe4d4;
+    --color-primary-200: #a8cdb1;
+    --color-primary-300: #7eb08c;
+    --color-primary-400: #579369;
+    --color-primary-500: #3c774e;
+    --color-primary-600: #2c5f3c;
+    --color-primary-700: #244b30;
+    --color-primary-800: #1e3d28;
+    --color-primary-900: #193222;
+    --color-primary-950: #0e1d13;
   }
 
   /* 5. Royal Midnight (Dark/Luxury) */
@@ -148,11 +148,11 @@
     --color-text: var(--color-text-dark);
     --color-text-muted: var(--color-text-muted-dark);
 
-    --color-bg-dark: #0a0e17;
-    --color-card-dark: #121826;
-    --color-border-dark: #2a3441;
-    --color-text-dark: #fcfcfc;
-    --color-text-muted-dark: #a8b2c1;
+    --color-bg-dark: #07122b;
+    --color-card-dark: #0f1e42;
+    --color-border-dark: #203566;
+    --color-text-dark: #f8fafc;
+    --color-text-muted-dark: #94a3b8;
 
     --color-primary-50: #fbf9f1;
     --color-primary-100: #f6f1df;
@@ -191,11 +191,11 @@
 
   /* Cyber Neon Glow */
   [data-theme="cyber-neon"] .card {
-    box-shadow: 0 0 12px rgba(6, 182, 212, 0.05);
-    border-color: rgba(6, 182, 212, 0.15);
+    box-shadow: 0 0 16px rgba(217, 70, 239, 0.08);
+    border-color: rgba(217, 70, 239, 0.2);
   }
   [data-theme="cyber-neon"] .btn-primary {
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
   }
 
   /* Category Themes & Semantic Colors */
