@@ -75,6 +75,8 @@ export default function ArticlePage() {
     enabled: isSupabaseId && isSupabaseConfigured,
   });
 
+  const [showAllComments, setShowAllComments] = useState(false);
+
   const isLoading = isSupabaseId ? sbPostLoading : jsonPostsLoading;
 
   if (isLoading) {
@@ -137,7 +139,6 @@ export default function ArticlePage() {
     ? jsonPosts.filter(p => p.category === post.category && p.id !== postId).slice(0, 3)
     : []; // could fetch related supabase posts later
 
-  const [showAllComments, setShowAllComments] = useState(false);
   const displayedComments = showAllComments ? comments : comments.slice(0, 2);
 
   return (
