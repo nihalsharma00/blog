@@ -24,7 +24,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }) {
   return (
     <nav
       aria-label="Pagination"
-      className="flex items-center justify-center gap-1 mt-10 flex-wrap"
+      className="flex items-center justify-start sm:justify-center gap-1 sm:gap-2 mt-10 flex-nowrap overflow-x-auto max-w-full pb-4 sm:pb-0 px-1"
     >
       <button
         onClick={() => onPageChange(currentPage - 1)}
